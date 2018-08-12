@@ -6,7 +6,17 @@ import javax.swing.JOptionPane;
 
 import org.jointheleague.graphical.robot.Robot;
 
-public class _01_RobotRace {
+public class _01_RobotRace { public static void main(String[] args) {
+	Robot[] tobor=new Robot[5];
+	int x=27;
+	int y=560;
+for (int i = 0; i < tobor.length; i++) {
+	tobor[i]=new Robot();
+	
+	tobor[0].setSpeed(5);
+	tobor[0].moveTo(x, y);
+}
+	
 	//1. make a main method
 	
 		//2. create an array of 5 robots.
@@ -26,5 +36,5 @@ public class _01_RobotRace {
     	
 	    //9. make the robots race around a circular track.
 
-	
+}	
 }
