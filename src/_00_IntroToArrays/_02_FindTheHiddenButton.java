@@ -30,9 +30,28 @@ public class _02_FindTheHiddenButton implements ActionListener{
 		
 		//3.  Ask the user to enter a positive number and convert it to an int
 		
+		String answer=JOptionPane.showInputDialog("Enter a positive integer");
+		int conversion=Integer.parseInt(answer);
+		JButton[] buttons=new JButton[conversion];
+		Random number=new Random();
+		int hiddenButton=number.nextInt(conversion);
 		//4. Initialize the array of JButtons to be the size of the int created in step 3
 		
 		//5. Make a for loop to iterate through the JButton array
+		window.add(panel);
+		window.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		window.isVisible();
+		for (int i = 0; i < buttons.length; i++) {
+			buttons[i]=new JButton();
+			buttons[i].addActionListener(this);
+			panel.add(buttons[i]);
+			if (hiddenButton==buttons[i].getY()) {
+				buttons[i].setText("ME");
+			}
+			
+		}
+	
+		JOptionPane.showMessageDialog(null, "Find the hidden button");
 			//6. initialize each JButton in the array
 			//7. add the ActionListener to each JButton
 			//8. add each JButton to the panel

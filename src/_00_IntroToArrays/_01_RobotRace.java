@@ -8,14 +8,10 @@ import org.jointheleague.graphical.robot.Robot;
 
 public class _01_RobotRace { public static void main(String[] args) {
 	Robot[] tobor=new Robot[5];
-	int x=27;
+	int x=30;
 	int y=560;
-for (int i = 0; i < tobor.length; i++) {
-	tobor[i]=new Robot();
-	
-	tobor[0].setSpeed(5);
-	tobor[0].moveTo(x, y);
-}
+	boolean top=true;
+
 	
 	//1. make a main method
 	
@@ -27,7 +23,39 @@ for (int i = 0; i < tobor.length; i++) {
 	
 		//5. use another for loop to iterate through the array and make each robot move 
 	    //   a random amount less than 50.
-    	
+    
+    for (int i = 0; i < tobor.length; i++) {
+	tobor[i]=new Robot();
+	tobor[i].setSpeed(15);
+	tobor[i].moveTo(x, y);
+	x=x+80;
+}
+    while (top==true) {
+		
+			for (int i = 0; i < tobor.length; i++) {
+    			
+			if (tobor[i].getY()<=0) {
+    			Random nyeh=new Random();
+    			int hay=nyeh.nextInt(50);
+    			tobor[i].move(hay);
+			top=false;
+			JOptionPane.showMessageDialog(null, "Robot "+i+" is the winner!");
+			
+													}
+			
+			
+			else {
+    			Random nyeh=new Random();
+    			int hay=nyeh.nextInt(50);
+    			tobor[i].move(hay);
+			}
+		}
+			
+				
+	}
+		
+	
+	
 		//6. use a while loop to repeat step 5 until a robot has reached the top of the screen.
 
 		//7. declare that robot the winner and throw it a party!
