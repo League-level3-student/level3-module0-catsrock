@@ -15,6 +15,7 @@ public class _02_FindTheHiddenButton implements ActionListener{
 	JFrame window;
 	JPanel panel;
 	JButton[] buttons;
+	int hiddenButton;
 	//1. create an array of JButtons. Don't initialize it yet.
 	
 	//2 create an integer variable called hiddenButton
@@ -23,6 +24,7 @@ public class _02_FindTheHiddenButton implements ActionListener{
 	
 		new _02_FindTheHiddenButton().start();
 	}
+	
 		public void start() {
 		window = new JFrame("Find the Button");
 		panel = new JPanel();
@@ -30,21 +32,29 @@ public class _02_FindTheHiddenButton implements ActionListener{
 		
 		String answer=JOptionPane.showInputDialog("Enter a positive integer");
 		int conversion=Integer.parseInt(answer);
-		JButton[] buttons=new JButton[conversion];
+		buttons=new JButton[conversion];
 		Random number=new Random();
-		int hiddenButton=number.nextInt(conversion);
+		hiddenButton=number.nextInt(conversion);
+		window.add(panel);
+		window.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		window.setVisible(true);
+		window.pack();
+		JOptionPane.showMessageDialog(null, "Find the hidden button");
 		
 		for (int i = 0; i < buttons.length; i++) {
 			buttons[i]=new JButton();
 			buttons[i].addActionListener(this);
 			panel.add(buttons[i]);
 			if(i==hiddenButton) {
+				buttons[i].setText("ME");
 				try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			buttons[i].setText("");
+			
 			}
 			else {
 				
@@ -52,11 +62,7 @@ public class _02_FindTheHiddenButton implements ActionListener{
 			
 		}
 		
-		window.add(panel);
-		window.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		window.setVisible(true);
-		window.pack();
-		JOptionPane.showMessageDialog(null, "Find the hidden button");
+		
 		
 		
 	}
@@ -95,8 +101,8 @@ public class _02_FindTheHiddenButton implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton buttonClicked = (JButton)e.getSource();
-		if(buttonClicked.equals(buttons)) {
-			JOptionPane.showMessageDialog(null, "You win!");
+		if(buttonClicked.equals(buttons[hiddenButton])) {
+			JOptionPane.showMessageDialog(null, "Fantastic, you win");
 		}
 		else {
 			JOptionPane.showMessageDialog(null, "Try again");
