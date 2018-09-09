@@ -1,6 +1,6 @@
 //1. create an array of ints. don't initialize it yet.
 int[]thing1;
-
+int conversion;
 void setup() {
   size(500, 500);
   //2. set the size of your window
@@ -15,7 +15,7 @@ thing1=new int[width];
   //   from 0 to the built in height variable
 
 for(int i=0; i<thing1.length; i++){
-  int conversion=(int)random(height);
+  conversion=(int)random(height);
   thing1[i]=conversion;
 }
   //5. call the noStroke() method
@@ -35,18 +35,28 @@ color(333);
   //   the width is 1
   //   the height is negative the value of the int at that element in the array
 for(int i=0; i<thing1.length; i++){
-rect(thing1.length, height, 1, -i);
+rect(i, height, 1, -thing1[i]);
 }
 
   //9. call the stepSort method
-  
+  stepSort(thing1);
 
-  //10. extract the code that randomizes the array into a method.
-  
-
-  //11. call the method you made in step 10 when the mouse is pressed
-  
+//11. call the method you made in step 10 when the mouse is pressed
+  if(mousePressed){
+    randomArray(thing1);
+  }
 }
+  //10. extract the code that randomizes the array into a method.
+void randomArray(int[] array){
+  for(int i=0; i<array.length; i++){
+  int cranberry=(int)random(height);
+  array[i]=cranberry;
+  }
+}
+
+  
+  
+
 
 void stepSort(int[] arr) {
   for (int i = 1; i < arr.length; i++) {
