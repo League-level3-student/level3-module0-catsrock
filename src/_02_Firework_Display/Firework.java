@@ -1,5 +1,6 @@
 package _02_Firework_Display;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
@@ -14,7 +15,9 @@ import org.jointheleague.graphical.robot.Robot;
 
 public class Firework{
 	public static final int GRAVITY = 1;
-	
+	static Random xValue=new Random();
+	public static int initialX=xValue.nextInt(1000)+100;
+	public static int initialY=900;
 	//1. Create an array of Spark objects called sparks. Don't initialize it.
 	Spark[]sparks;
 	public boolean dead = false;
@@ -27,7 +30,8 @@ sparks=new Spark[100];
 		//3. Iterate through the sparks and initialize each one to a new Spark.
 		//   Make each spark start at the middle bottom of the screen.
 	for (int i = 0; i < sparks.length; i++) {
-		//sparks[i]=new Spark();
+		
+		sparks[i]=new Spark(initialX, initialY);
 		
 		
 	}
@@ -37,10 +41,9 @@ sparks=new Spark[100];
 		//4. Iterate through the sparks and reset their x and y location
 		//   to their original starting point.
 		for (int i = 0; i < sparks.length; i++) {
-			//sparks[i].getX();
-			//sparks[i].getY();
-			//sparks[i].setX(0);
-			//sparks[i].setY(0);
+			initialX=sparks[i].x;
+			initialY=sparks[i].y;
+			sparks[i]=new Spark(initialX, initialY);
 		}
 	}
 	
@@ -48,7 +51,6 @@ sparks=new Spark[100];
 		//8. Uncomment this code. See if you can understand what it is doing.
 		
 		for(int i = 0; i < sparks.length; i++) {
-
      		Spark s = sparks[i];
 			s.x += s.xVelocity;
 			s.y += s.yVelocity;
@@ -78,7 +80,12 @@ sparks=new Spark[100];
 	
 	public void drawSparks(Graphics g) {
 		//5. Iterate through each spark
+		for (int i = 0; i < sparks.length; i++) {
 			//6. Set the color to the spark's color with g.setColor()
-			//7. Fill in an oval using the spark's x, y, and size with g.fillOval()
+			g.setColor(sparks[i].color);
+			
+		//7. Fill in an oval using the spark's x, y, and size with g.fillOval()
+			g.fillOval(sparks[i].x, sparks[i].y, sparks[i].size, sparks[i].size);
+		}	
 	}
 }
